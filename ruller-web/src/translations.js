@@ -1,5 +1,10 @@
 export const translations = {
   ka: {// ka
+    // ka
+    pageNotFoundDesc: "გვერდი, რომელსაც ეძებთ, არ არსებობს.",
+    backHome: "მთავარზე დაბრუნება",
+    pageNotFoundDesc: "გვერდი, რომელსაც ეძებთ, არ არსებობს.",
+    backHome: "მთავარზე დაბრუნება",
     errRequired: "სავალდებულო ველი",
     errEmail: "შეიყვანეთ სწორი ელ-ფოსტა",
     errMessage: "შეტყობინება ძალიან მოკლეა",
@@ -50,6 +55,8 @@ export const translations = {
   },
   en: {
   // en
+    pageNotFoundDesc: "The page you're looking for doesn't exist.",
+    backHome: "Back to home",
     errRequired: "This field is required",
     errEmail: "Enter a valid email",
     errMessage: "Message is too short",
@@ -84,6 +91,9 @@ export const translations = {
     sqm: "sqm",
     beds: "Beds",
     detailsBtn: "View Details",
+    // en
+    pageNotFoundDesc: "The page you're looking for doesn't exist.",
+    backHome: "Back to home",
     // en
     notFoundTitle: "Property not found",
     notFoundDesc: "Sorry, this listing no longer exists or has been removed.",

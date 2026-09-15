@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom'; // Imported NavLink
 
 function Navbar({ t, toggleLanguage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +22,10 @@ function Navbar({ t, toggleLanguage }) {
       </button>
 
       <div className={`nav-links ${isOpen ? 'is-open' : ''}`}>
-        <Link to="/" onClick={closeMenu}>{t.navHome}</Link>
-        <Link to="/properties" onClick={closeMenu}>{t.navProperties}</Link>
-        <Link to="/contact" onClick={closeMenu}>{t.navContact}</Link>
+        <NavLink to="/" end onClick={closeMenu}>{t.navHome}</NavLink>
+        <NavLink to="/properties" onClick={closeMenu}>{t.navProperties}</NavLink>
+        <NavLink to="/contact" onClick={closeMenu}>{t.navContact}</NavLink>
+        
         <button
           className="nav-lang-btn"
           onClick={() => {

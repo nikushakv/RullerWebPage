@@ -645,3 +645,6 @@ h2::after {
   color: #444;
   font-size: 1.05rem;
 }
+.nav-links a.active {
+  color: #0044cc;
+}
