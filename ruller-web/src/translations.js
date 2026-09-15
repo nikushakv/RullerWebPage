@@ -40,6 +40,9 @@ export const translations = {
     beds: "საძინებელი",
     detailsBtn: "დეტალურად ნახვა",
     // ka
+    heroHeading: "იპოვე შენი სახლი თბილისში.",
+    heroCta: "იხილეთ განცხადებები",
+    // ka
     notFoundTitle: "განცხადება ვერ მოიძებნა",
     notFoundDesc: "სამწუხაროდ, ეს განცხადება აღარ არსებობს ან წაშლილია.",
     backToProperties: "უკან, განცხადებებზე",
@@ -94,6 +97,9 @@ export const translations = {
     // en
     pageNotFoundDesc: "The page you're looking for doesn't exist.",
     backHome: "Back to home",
+    // en
+    heroHeading: "Find your place in Tbilisi.",
+    heroCta: "View Properties",
     // en
     notFoundTitle: "Property not found",
     notFoundDesc: "Sorry, this listing no longer exists or has been removed.",

@@ -1,21 +1,29 @@
 import React from 'react';
-import Seo from '../components/Seo';
+import { Link } from 'react-router-dom';
 
-function Home({ t, language }) {
+function Home({ t }) {
   return (
     <div>
-      <Seo
-        title={language === 'ka' ? "RULLER | უძრავი ქონების პროფესიონალები თბილისში" : "RULLER | Real Estate Professionals in Tbilisi"}
-        description={t.subtitle}
-      />
-      <header className="hero-section">
-        <div className="hero-content animate-slide-up">
-          <h1 className="brand-title">{t.title}</h1>
-          <p className="brand-subtitle">{t.subtitle}</p>
+      <header className="hero">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <h1 className="hero-heading">{t.heroHeading}</h1>
+            <p className="hero-sub">{t.subtitle}</p>
+            <Link to="/properties" className="btn-brass">{t.heroCta}</Link>
+          </div>
+          <div className="hero-frame">
+            <div className="hero-photo-frame">
+              <img
+                src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=700&q=80"
+                alt=""
+                className="hero-photo"
+              />
+            </div>
+          </div>
         </div>
       </header>
 
-      <section className="about-section animate-slide-up-delay-1">
+      <section className="about-section">
         <h2>{t.aboutTitle}</h2>
         <div className="about-text">
           <p>{t.aboutP1}</p>
@@ -23,18 +31,18 @@ function Home({ t, language }) {
         </div>
       </section>
 
-      <section className="services-section animate-slide-up-delay-2">
+      <section className="services-section">
         <h2>{t.servicesTitle}</h2>
-        <div className="services-grid">
-          <div className="service-card">
+        <div className="services-row">
+          <div className="service-col">
             <h3>{t.buySellTitle}</h3>
             <p>{t.buySellDesc}</p>
           </div>
-          <div className="service-card">
+          <div className="service-col">
             <h3>{t.rentTitle}</h3>
             <p>{t.rentDesc}</p>
           </div>
-          <div className="service-card">
+          <div className="service-col">
             <h3>{t.consultTitle}</h3>
             <p>{t.consultDesc}</p>
           </div>
