@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Seo from '../components/Seo';
 
 // Replace with your own Formspree form ID after signing up at formspree.io
 const FORMSPREE_ID = 'YOUR_FORM_ID';
@@ -57,6 +58,8 @@ function Contact({ t }) {
 
   return (
     <div className="page-container animate-fade-in">
+      <Seo title={`${t.navContact} | RULLER`} />
+      
       <h2>{t.navContact}</h2>
 
       <div className="contact-layout">

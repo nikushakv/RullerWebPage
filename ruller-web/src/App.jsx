@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
-import Properties from './pages/Properties';
-import PropertyDetail from './pages/PropertyDetail';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
 import { translations } from './translations';
 import './App.css';
+
+// 1. Lazy load the routes (except Home, which is kept eager for immediate load)
+const Properties = lazy(() => import('./pages/Properties'));
+const PropertyDetail = lazy(() => import('./pages/PropertyDetail'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const [language, setLanguage] = useState('ka');
@@ -23,13 +25,16 @@ function App() {
       <div className="ruller-container">
         <Navbar t={t} toggleLanguage={toggleLanguage} />
 
-        <Routes>
-          <Route path="/" element={<Home t={t} />} />
-          <Route path="/properties" element={<Properties t={t} language={language} />} />
-          <Route path="/properties/:id" element={<PropertyDetail t={t} language={language} />} />
-          <Route path="/contact" element={<Contact t={t} />} />
-          <Route path="*" element={<NotFound t={t} />} />
-        </Routes>
+        {/* 2. Wrap Routes in Suspense with a fallback loading state */}
+        <Suspense fallback={<div className="page-container">…</div>}>
+          <Routes>
+            <Route path="/" element={<Home t={t} language={language} />} />
+            <Route path="/properties" element={<Properties t={t} language={language} />} />
+            <Route path="/properties/:id" element={<PropertyDetail t={t} language={language} />} />
+            <Route path="/contact" element={<Contact t={t} />} />
+            <Route path="*" element={<NotFound t={t} />} />
+          </Routes>
+        </Suspense>
 
         <Footer t={t} />
         <WhatsAppButton />

@@ -1,8 +1,13 @@
 import React from 'react';
+import Seo from '../components/Seo';
 
-function Home({ t }) {
+function Home({ t, language }) {
   return (
     <div>
+      <Seo
+        title={language === 'ka' ? "RULLER | უძრავი ქონების პროფესიონალები თბილისში" : "RULLER | Real Estate Professionals in Tbilisi"}
+        description={t.subtitle}
+      />
       <header className="hero-section">
         <div className="hero-content animate-slide-up">
           <h1 className="brand-title">{t.title}</h1>

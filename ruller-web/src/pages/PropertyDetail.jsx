@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Seo from '../components/Seo';
 import { propertyData } from '../data/properties';
 
 function PropertyDetail({ t, language }) {
@@ -11,6 +12,7 @@ function PropertyDetail({ t, language }) {
   if (!property) {
     return (
       <div className="page-container animate-fade-in">
+        <Seo title={`${t.notFoundTitle} | RULLER`} />
         <h2>{t.notFoundTitle}</h2>
         <p>{t.notFoundDesc}</p>
         <Link to="/properties" className="details-btn" style={{ display: 'inline-block', marginTop: '20px', maxWidth: '250px' }}>
@@ -25,6 +27,8 @@ function PropertyDetail({ t, language }) {
 
   return (
     <div className="page-container animate-fade-in" style={{ textAlign: 'left' }}>
+      <Seo title={`${title} | RULLER`} description={desc} />
+      
       <Link to="/properties" className="back-link">← {t.backToProperties}</Link>
 
       <div className="property-detail-layout">
