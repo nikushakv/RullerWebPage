@@ -479,3 +479,169 @@ h2::after {
   transform: scale(1.1) translateY(-5px);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
+
+.field-error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: -4px;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+/* --- MOBILE NAV TOGGLE --- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #0044cc;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* --- RESPONSIVE BREAKPOINT --- */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right 0.35s ease;
+    z-index: 1050;
+  }
+
+  .nav-links.is-open {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.3rem;
+  }
+
+  .brand-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-section {
+    height: 60vh;
+  }
+
+  .contact-layout {
+    flex-direction: column;
+  }
+}
+
+.details-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #0044cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.property-detail-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.property-detail-gallery {
+  flex: 1.2;
+  min-width: 300px;
+}
+
+.property-detail-main-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.property-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.property-thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.property-thumb.active,
+.property-thumb:hover {
+  opacity: 1;
+  outline: 2px solid #0044cc;
+}
+
+.property-detail-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.property-detail-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0044cc;
+  margin: 10px 0;
+}
+
+.property-detail-desc {
+  line-height: 1.7;
+  color: #444;
+  font-size: 1.05rem;
+}

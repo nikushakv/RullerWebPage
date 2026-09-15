@@ -1,5 +1,11 @@
 export const translations = {
-  ka: {
+  ka: {// ka
+    errRequired: "სავალდებულო ველი",
+    errEmail: "შეიყვანეთ სწორი ელ-ფოსტა",
+    errMessage: "შეტყობინება ძალიან მოკლეა",
+    formError: "შეცდომა მოხდა, სცადეთ თავიდან",
+    formSending: "იგზავნება...",
+    formSendAnother: "ახალი შეტყობინების გაგზავნა",
     navHome: "მთავარი",
     navProperties: "უძრავი ქონება",
     navContact: "კონტაქტი",
@@ -22,16 +28,34 @@ export const translations = {
     email: "✉️ ელ-ფოსტა: info@ruller.ge",
     address: "📍 მისამართი: თბილისი, საქართველო",
     rights: "ყველა უფლება დაცულია.",
-    
-    // NEW: Property translations
     propTitle: "ჩვენი განცხადებები",
     propDesc: "იხილეთ ჩვენი ექსკლუზიური შეთავაზებები",
     price: "ფასი",
     sqm: "კვ.მ",
     beds: "საძინებელი",
-    detailsBtn: "დეტალურად ნახვა"
+    detailsBtn: "დეტალურად ნახვა",
+    // ka
+    notFoundTitle: "განცხადება ვერ მოიძებნა",
+    notFoundDesc: "სამწუხაროდ, ეს განცხადება აღარ არსებობს ან წაშლილია.",
+    backToProperties: "უკან, განცხადებებზე",
+    contactAboutThis: "დაინტერესებული ვარ ამით",
+    // NEW: Contact Form
+    formName: "თქვენი სახელი",
+    formEmail: "ელ-ფოსტა",
+    formMsg: "შეტყობინება",
+    formSubmit: "გაგზავნა",
+    formSuccess: "✅ თქვენი შეტყობინება წარმატებით გაიგზავნა! ჩვენ მალე დაგიკავშირდებით."
+    
+      
   },
   en: {
+  // en
+    errRequired: "This field is required",
+    errEmail: "Enter a valid email",
+    errMessage: "Message is too short",
+    formError: "Something went wrong, please try again",
+    formSending: "Sending...",
+    formSendAnother: "Send another message",  
     navHome: "Home",
     navProperties: "Properties",
     navContact: "Contact",
@@ -54,13 +78,23 @@ export const translations = {
     email: "✉️ Email: info@ruller.ge",
     address: "📍 Address: Tbilisi, Georgia",
     rights: "All rights reserved.",
-    
-    // NEW: Property translations
     propTitle: "Our Properties",
     propDesc: "Browse our exclusive real estate listings",
     price: "Price",
     sqm: "sqm",
     beds: "Beds",
-    detailsBtn: "View Details"
+    detailsBtn: "View Details",
+    // en
+    notFoundTitle: "Property not found",
+    notFoundDesc: "Sorry, this listing no longer exists or has been removed.",
+    backToProperties: "Back to properties",
+    contactAboutThis: "I'm interested in this",
+    
+    // NEW: Contact Form
+    formName: "Full Name",
+    formEmail: "Email Address",
+    formMsg: "Your Message",
+    formSubmit: "Send Message",
+    formSuccess: "✅ Your message has been sent successfully! We will contact you soon."
   }
 };

@@ -1,0 +1,48 @@
+export const propertyData = [
+  {
+    id: 1,
+    images: [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+    ],
+    titleKa: "პრემიუმ კლასის ბინა ვაკეში",
+    titleEn: "Premium Apartment in Vake",
+    descKa: "ახალაშენებული, სრულად გარემონტებული ბინა ვაკის საუკეთესო უბანში, პარკთან ახლოს.",
+    descEn: "Newly built, fully renovated apartment in the best part of Vake, close to the park.",
+    price: "$250,000",
+    sqm: 120,
+    beds: 3,
+    location: "Vake, Tbilisi",
+  },
+  {
+    id: 2,
+    images: [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+    ],
+    titleKa: "თანამედროვე ბინა საბურთალოზე",
+    titleEn: "Modern Flat in Saburtalo",
+    descKa: "მყუდრო და თანამედროვე ბინა საბურთალოს ცენტრში, მეტროსთან ახლოს.",
+    descEn: "A cozy, modern flat in the center of Saburtalo, close to the metro.",
+    price: "$145,000",
+    sqm: 85,
+    beds: 2,
+    location: "Saburtalo, Tbilisi",
+  },
+  {
+    id: 3,
+    images: [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
+    ],
+    titleKa: "კერძო სახლი მთაწმინდაზე",
+    titleEn: "Private House in Mtatsminda",
+    descKa: "სივრცული კერძო სახლი ულამაზესი ხედით მთაწმინდის ისტორიულ უბანში.",
+    descEn: "A spacious private house with a stunning view in the historic Mtatsminda district.",
+    price: "$450,000",
+    sqm: 300,
+    beds: 5,
+    location: "Mtatsminda, Tbilisi",
+  },
+];

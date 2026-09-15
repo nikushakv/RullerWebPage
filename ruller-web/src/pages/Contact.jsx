@@ -1,19 +1,65 @@
 import React, { useState } from 'react';
 
-function Contact({ t }) {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+// Replace with your own Formspree form ID after signing up at formspree.io
+const FORMSPREE_ID = 'YOUR_FORM_ID';
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the page from reloading
-    setIsSubmitted(true); // Shows the success message
+const initialForm = { name: '', email: '', message: '' };
+
+function Contact({ t }) {
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  const validate = () => {
+    const errs = {};
+    if (!form.name.trim()) errs.name = t.errRequired;
+    if (!form.email.trim()) {
+      errs.email = t.errRequired;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      errs.email = t.errEmail;
+    }
+    if (!form.message.trim() || form.message.trim().length < 10) {
+      errs.message = t.errMessage;
+    }
+    return errs;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    // clear the field's error as soon as they start fixing it
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setStatus('sending');
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.target),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm(initialForm);
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
     <div className="page-container animate-fade-in">
       <h2>{t.navContact}</h2>
-      
+
       <div className="contact-layout">
-        {/* Left Side: Info */}
         <div className="contact-page-info">
           <h3>RULLER</h3>
           <p>{t.contactDesc}</p>
@@ -24,28 +70,65 @@ function Contact({ t }) {
           </div>
         </div>
 
-        {/* Right Side: Form */}
         <div className="contact-form-container">
-          {isSubmitted ? (
+          {status === 'success' ? (
             <div className="success-message">
               {t.formSuccess}
+              <button
+                className="submit-btn"
+                style={{ marginTop: '20px' }}
+                onClick={() => setStatus('idle')}
+              >
+                {t.formSendAnother}
+              </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form onSubmit={handleSubmit} className="contact-form" noValidate>
               <div className="form-group">
-                <label>{t.formName}</label>
-                <input type="text" required placeholder="..." />
+                <label htmlFor="name">{t.formName}</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={form.name}
+                  onChange={handleChange}
+                  aria-invalid={!!errors.name}
+                />
+                {errors.name && <span className="field-error">{errors.name}</span>}
               </div>
+
               <div className="form-group">
-                <label>{t.formEmail}</label>
-                <input type="email" required placeholder="@" />
+                <label htmlFor="email">{t.formEmail}</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  aria-invalid={!!errors.email}
+                />
+                {errors.email && <span className="field-error">{errors.email}</span>}
               </div>
+
               <div className="form-group">
-                <label>{t.formMsg}</label>
-                <textarea rows="5" required placeholder="..."></textarea>
+                <label htmlFor="message">{t.formMsg}</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  value={form.message}
+                  onChange={handleChange}
+                  aria-invalid={!!errors.message}
+                />
+                {errors.message && <span className="field-error">{errors.message}</span>}
               </div>
-              <button type="submit" className="submit-btn">
-                {t.formSubmit}
+
+              {status === 'error' && (
+                <span className="field-error">{t.formError}</span>
+              )}
+
+              <button type="submit" className="submit-btn" disabled={status === 'sending'}>
+                {status === 'sending' ? t.formSending : t.formSubmit}
               </button>
             </form>
           )}
