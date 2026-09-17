@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import { translations } from './translations';
 import './App.css';
 
-// 1. Lazy load the routes (except Home, which is kept eager for immediate load)
+// Lazy load the routes (except Home, which is kept eager for immediate load)
 const Properties = lazy(() => import('./pages/Properties'));
 const PropertyDetail = lazy(() => import('./pages/PropertyDetail'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -25,16 +25,21 @@ function App() {
       <div className="ruller-container">
         <Navbar t={t} toggleLanguage={toggleLanguage} />
 
-        {/* 2. Wrap Routes in Suspense with a fallback loading state */}
-        <Suspense fallback={<div className="page-container">…</div>}>
-          <Routes>
-            <Route path="/" element={<Home t={t} language={language} />} />
-            <Route path="/properties" element={<Properties t={t} language={language} />} />
-            <Route path="/properties/:id" element={<PropertyDetail t={t} language={language} />} />
-            <Route path="/contact" element={<Contact t={t} />} />
-            <Route path="*" element={<NotFound t={t} />} />
-          </Routes>
-        </Suspense>
+        {/* Skip to content link for keyboard users */}
+        <a href="#main-content" className="skip-link">Skip to content</a>
+
+        {/* Main content wrapped for accessibility */}
+        <main id="main-content">
+          <Suspense fallback={<div className="page-container">…</div>}>
+            <Routes>
+              <Route path="/" element={<Home t={t} language={language} />} />
+              <Route path="/properties" element={<Properties t={t} language={language} />} />
+              <Route path="/properties/:id" element={<PropertyDetail t={t} language={language} />} />
+              <Route path="/contact" element={<Contact t={t} />} />
+              <Route path="*" element={<NotFound t={t} />} />
+            </Routes>
+          </Suspense>
+        </main>
 
         <Footer t={t} />
         <WhatsAppButton />

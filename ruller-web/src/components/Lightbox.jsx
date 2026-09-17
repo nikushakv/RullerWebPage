@@ -14,7 +14,13 @@ function Lightbox({ src, alt, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="lightbox-overlay" onClick={onClose}>
+    <div
+      className="lightbox-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image preview"
+    >
       <button className="lightbox-close" onClick={onClose} aria-label="Close">×</button>
       <img src={src} alt={alt} className="lightbox-image" onClick={(e) => e.stopPropagation()} />
     </div>
