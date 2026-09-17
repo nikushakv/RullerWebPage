@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Testimonials from '../components/Testimonials';
 
 function Home({ t }) {
   return (
@@ -48,6 +49,7 @@ function Home({ t }) {
           </div>
         </div>
       </section>
+      <Testimonials t={t} language={language} />
     </div>
   );
 }

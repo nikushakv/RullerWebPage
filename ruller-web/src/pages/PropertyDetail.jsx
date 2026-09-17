@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Seo from '../components/Seo';
 import { propertyData } from '../data/properties';
+import Lightbox from '../components/Lightbox';
 
 function PropertyDetail({ t, language }) {
   const { id } = useParams();
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const property = propertyData.find((p) => String(p.id) === id);
 
   if (!property) {
     return (
       <div className="page-container animate-fade-in">
-        <Seo title={`${t.notFoundTitle} | RULLER`} />
         <h2>{t.notFoundTitle}</h2>
         <p>{t.notFoundDesc}</p>
         <Link to="/properties" className="details-btn" style={{ display: 'inline-block', marginTop: '20px', maxWidth: '250px' }}>
@@ -27,13 +27,17 @@ function PropertyDetail({ t, language }) {
 
   return (
     <div className="page-container animate-fade-in" style={{ textAlign: 'left' }}>
-      <Seo title={`${title} | RULLER`} description={desc} />
-      
       <Link to="/properties" className="back-link">← {t.backToProperties}</Link>
 
       <div className="property-detail-layout">
         <div className="property-detail-gallery">
-          <img src={property.images[activeImage]} alt={title} className="property-detail-main-image" />
+          <img
+            src={property.images[activeImage]}
+            alt={title}
+            className="property-detail-main-image"
+            style={{ cursor: 'zoom-in' }}
+            onClick={() => setLightboxOpen(true)}
+          />
           {property.images.length > 1 && (
             <div className="property-thumbnails">
               {property.images.map((img, idx) => (
@@ -53,9 +57,9 @@ function PropertyDetail({ t, language }) {
           <h2 style={{ textAlign: 'left' }}>{title}</h2>
           <div className="property-detail-price">{property.price}</div>
           <div className="property-specs" style={{ margin: '20px 0' }}>
-            <span>📏 {property.sqm} {t.sqm}</span>
-            <span>🛏️ {property.beds} {t.beds}</span>
-            <span>📍 {property.location}</span>
+            <span>{property.sqm} {t.sqm}</span>
+            <span>{property.beds} {t.beds}</span>
+            <span>{property.location}</span>
           </div>
           <p className="property-detail-desc">{desc}</p>
           <a href="https://wa.me/995555123456" className="submit-btn" style={{ display: 'inline-block', textDecoration: 'none', marginTop: '20px' }}>
@@ -63,6 +67,10 @@ function PropertyDetail({ t, language }) {
           </a>
         </div>
       </div>
+
+      {lightboxOpen && (
+        <Lightbox src={property.images[activeImage]} alt={title} onClose={() => setLightboxOpen(false)} />
+      )}
     </div>
   );
 }
