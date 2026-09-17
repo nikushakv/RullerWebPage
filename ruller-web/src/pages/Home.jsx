@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Team from '../components/Team'; // Added Import
 import Testimonials from '../components/Testimonials';
 
-function Home({ t }) {
+function Home({ t, language }) {
   return (
     <div>
       <header className="hero">
@@ -49,6 +50,8 @@ function Home({ t }) {
           </div>
         </div>
       </section>
+
+      <Team t={t} language={language} />
       <Testimonials t={t} language={language} />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Seo from '../components/Seo';
 
-// Replace with your own Formspree form ID after signing up at formspree.io
+// Replace with your own Formspree form ID later
 const FORMSPREE_ID = 'YOUR_FORM_ID';
 
 const initialForm = { name: '', email: '', message: '' };
@@ -28,7 +28,6 @@ function Contact({ t }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    // clear the field's error as soon as they start fixing it
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
@@ -39,6 +38,18 @@ function Contact({ t }) {
     if (Object.keys(errs).length > 0) return;
 
     setStatus('sending');
+
+    // DEMO MODE: If you haven't added your real Formspree ID yet, 
+    // this fakes a successful email send so you can test the UI!
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+      setTimeout(() => {
+        setStatus('success');
+        setForm(initialForm);
+      }, 1500);
+      return;
+    }
+
+    // REAL MODE: Runs when you add a real Formspree ID
     try {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
@@ -71,6 +82,19 @@ function Contact({ t }) {
             <p>{t.email}</p>
             <p>{t.address}</p>
           </div>
+          
+          {/* Styled the Map to match your premium border-radius design */}
+          <div className="map-embed" style={{ marginTop: '30px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
+            <iframe
+              title="RULLER office location"
+              src="https://www.google.com/maps?q=Tbilisi,Georgia&output=embed"
+              width="100%"
+              height="260"
+              style={{ border: 0, display: 'block' }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>                       
         </div>
 
         <div className="contact-form-container">

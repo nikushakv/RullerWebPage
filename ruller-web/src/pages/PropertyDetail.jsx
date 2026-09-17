@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { propertyData } from '../data/properties';
 import Lightbox from '../components/Lightbox';
+import { IconArea, IconBed, IconPin } from '../components/icons';
 
 function PropertyDetail({ t, language }) {
   const { id } = useParams();
@@ -56,10 +57,11 @@ function PropertyDetail({ t, language }) {
         <div className="property-detail-info">
           <h2 style={{ textAlign: 'left' }}>{title}</h2>
           <div className="property-detail-price">{property.price}</div>
+          {/* Updated specs block */}
           <div className="property-specs" style={{ margin: '20px 0' }}>
-            <span>{property.sqm} {t.sqm}</span>
-            <span>{property.beds} {t.beds}</span>
-            <span>{property.location}</span>
+            <span><IconArea /> {property.sqm} {t.sqm}</span>
+            <span><IconBed /> {property.beds} {t.beds}</span>
+            <span><IconPin /> {property.location}</span>
           </div>
           <p className="property-detail-desc">{desc}</p>
           <a href="https://wa.me/995555123456" className="submit-btn" style={{ display: 'inline-block', textDecoration: 'none', marginTop: '20px' }}>
